@@ -3,6 +3,8 @@
 // For example, char str[] = "Hello"; and char *str = "Hello";
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+
 
 
 void print_chars(char *str){
@@ -18,6 +20,17 @@ void print_chars(char *str){
     printf("\n");
 }
 
+char *str_copier(char *str){
+    // size_t is specifically for memory sizes and array indices - it's the return type of sizeof, strlen, malloc, .size() methods etc.
+    size_t len = strlen(str);
+
+    char *copied = malloc(sizeof(char) * (len + 1));
+
+    strcpy(copied, str);
+
+    return copied;
+}
+
 int main(){
 
     char *str = "Help me!"; // This is a pointer to a string literal, which is stored in read-only memory. WE CANNOT MODIFY THIS STRING.
@@ -27,6 +40,8 @@ int main(){
 
     print_chars(str);
     print_chars(str2);
+
+    print_chars(str_copier(str)); // This will print the copied string, which is stored in writable memory, so we can modify it if we want.
 
 }
 
