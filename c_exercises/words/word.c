@@ -8,7 +8,20 @@ void print_words(struct Word *word)
     {
         // %.*s is used to print a string with a specified length,
         // where the length is provided as an argument before the string itself.
-        printf("(%d) %.*s\n", word->position + 1, (int)word->length, word->value);
+        char *value = malloc(word->length + 1);
+        snprintf(value, word->length + 1, "%.*s", (int)word->length, word->value);
+
+        // convert the word to lowercase (char by char)
+        for (int i = 0; i < word->length; i++) {
+            value[i] = tolower(value[i]);
+        }
+
+        // print the word position and value
+        printf("(%d) %s\n", word->position + 1, value);
+
+        // free the allocated memory for the word value
+        free(value);
+        
         word = word->next;
     }
 }
