@@ -21,11 +21,12 @@ int main(int argc, char *argv[])
 
     // list of words
     struct Word *head = NULL;
+    struct InitialCharBucket *buckets = NULL;
 
     // auxiliar variables
     struct Word *tail = NULL;
 
-    // word data
+    // initial data
     char *word_value = NULL;
     unsigned int word_position = 0;
 
@@ -39,20 +40,23 @@ int main(int argc, char *argv[])
         {
             if (word_value != NULL)
             {
-                // calculate the length of the new word
+                // calculate the length of the new initial
                 char *last_word_character = &content[i] - 1;
                 ptrdiff_t word_length = (last_word_character - word_value) + 1;
 
-                // add the new word to the list
+                // add the word to the list
                 add_word(&tail, &head, word_value, word_position, word_length);
+
+                // update frequency data
+                add_word_frequency(&buckets, word_value, word_length);
                 word_position++;
 
-                // reset the first character of the next word
+                // reset the first character of the next initial
                 word_value = NULL;
             }
         }
         else
-        // is not space, start of a new word
+        // is not space, start of a new initial
         {
             if (word_value == NULL)
             {
@@ -63,5 +67,8 @@ int main(int argc, char *argv[])
 
     printf("Words found:\n");
     print_words(head);
+
+    printf("\nFrequency by initial:\n");
+    print_frequency(buckets);
     return 0;
 }

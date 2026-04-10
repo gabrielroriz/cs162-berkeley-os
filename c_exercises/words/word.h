@@ -5,11 +5,20 @@
 
 #include <stddef.h>
 
-struct WordFrequency
+struct InitialCharBucket
 {
-    char *word;
+    char initial;
+    struct WordCounter *head;
+    struct WordCounter *tail;
+    struct InitialCharBucket *next;
+    size_t n_distinct;
+};
+struct WordCounter
+{
+    char *value;
+    ptrdiff_t length;
+    struct WordCounter *next;
     unsigned int frequency;
-    struct WordFrequency *next;
 };
 
 struct Word
@@ -21,11 +30,13 @@ struct Word
 };
 
 void print_words(struct Word *word);
+void print_frequency(struct InitialCharBucket *bucket);
+void add_word_frequency(struct InitialCharBucket **buckets, char *value, ptrdiff_t length);
 
 void add_word(
-    struct Word **tail, 
+    struct Word **tail,
     struct Word **head,
-    char *value, 
+    char *value,
     unsigned int position,
     ptrdiff_t length);
 
