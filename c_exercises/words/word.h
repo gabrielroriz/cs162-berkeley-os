@@ -22,6 +22,13 @@ struct Word
 
 void print_words(struct Word *word);
 
+void add_word(
+    struct Word **tail, 
+    struct Word **head,
+    char *value, 
+    unsigned int position,
+    ptrdiff_t length);
+
 #define IS_SEPARATOR(c) ((c) == ' ' || (c) == '\n' || (c) == '\t' || (c) == '\r' || (c) == '\0')
 
 #endif /* WORD_H */
