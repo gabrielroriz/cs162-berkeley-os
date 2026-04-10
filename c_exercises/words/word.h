@@ -5,6 +5,13 @@
 
 #include <stddef.h>
 
+struct WordFrequency
+{
+    char *word;
+    unsigned int frequency;
+    struct WordFrequency *next;
+};
+
 struct Word
 {
     char *value;
