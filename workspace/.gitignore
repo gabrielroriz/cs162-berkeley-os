@@ -1,3 +1,14 @@
-.workspace/
+.workspace/**
+!.workspace/code/
+!.workspace/code/**
+.workspace/code/**/.git*/
+.workspace/code/**/*.o
+.workspace/code/**/compile_commands.json
+.workspace/code/personal/hw-intro/words/words
+.workspace/code/personal/hw-list/lwords
+.workspace/code/personal/hw-list/pthread
+.workspace/code/personal/hw-list/pwords
+.workspace/code/personal/hw-list/words
+.workspace/code/personal/hw-map-reduce/words
 
 .DS_Store
