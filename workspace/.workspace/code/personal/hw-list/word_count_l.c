@@ -33,7 +33,6 @@ void init_words(word_count_list_t* wclist) {
 
 size_t len_words(word_count_list_t* wclist) {
   size_t size = list_size(wclist);
-  printf("size is %ld", size);
   return size;
 }
 
@@ -78,7 +77,7 @@ void fprint_words(word_count_list_t* wclist, FILE* outfile) {
   struct list_elem *e;
   for (e = list_begin(wclist); e != list_end(wclist); e = list_next(e)) {
     word_count_t *wc = list_entry(e, word_count_t, elem);
-    fprintf(outfile, "%i\t%s\n", wc->count, wc->word);
+    fprintf(outfile, "%8d\t%s\n", wc->count, wc->word);
   }
 }
 
